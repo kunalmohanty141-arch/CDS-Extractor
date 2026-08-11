@@ -1,4 +1,4 @@
-<h1 align="center">CDC Forge</h1>
+<h1 align="center">CDC Forge(60% Done)</h1>
 
 <p align="center">
   <strong>Get ABAP CDS views ready for SAP Datasphere replication — with delta.</strong><br>
