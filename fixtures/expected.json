@@ -1,0 +1,81 @@
+{
+  "_comment": [
+    "The agreement corpus. Each entry states the verdict the fixture must",
+    "produce and the specific rule outcomes that must be present.",
+    "",
+    "Verdict alone would be a weak assertion: a fixture written to test R-14",
+    "could fail for an unrelated reason and still show MANUAL_REVIEW. Naming",
+    "the rule keeps the corpus honest.",
+    "",
+    "R-26 and R-28 are absent by construction — both depend on state that",
+    "cannot come from a DDL file (probe results, subscription state). They are",
+    "covered in tests/test_rules.py with that state injected."
+  ],
+
+  "ZI_BUSINESSAREA": {
+    "verdict": "PASS",
+    "expect": {"R-01": "SATISFIED", "R-02": "SATISFIED", "R-13": "SATISFIED",
+               "R-23": "SATISFIED", "R-27": "SATISFIED", "R-29": "SATISFIED"}
+  },
+  "ZI_CUSTORDER": {
+    "verdict": "PASS",
+    "expect": {"R-21": "SATISFIED", "R-22": "SATISFIED",
+               "R-25": "NOT_APPLICABLE"}
+  },
+  "ZI_COMMENT_TRAPS": {
+    "verdict": "PASS",
+    "expect": {"R-03": "SATISFIED", "R-04": "SATISFIED", "R-06": "SATISFIED",
+               "R-07": "SATISFIED", "R-11": "SATISFIED"}
+  },
+  "ZI_SALESORDER_CDC": {
+    "verdict": "MANUAL_REVIEW",
+    "expect": {"R-10": "SATISFIED", "R-13": "SATISFIED", "R-14": "SATISFIED",
+               "R-15": "SATISFIED", "R-16": "SATISFIED", "R-17": "SATISFIED",
+               "R-18": "SATISFIED", "R-19": "SATISFIED", "R-20": "SATISFIED",
+               "R-24": "SATISFIED"}
+  },
+
+  "ZI_EXPOSED_ASSOC": {
+    "verdict": "PASS",
+    "expect": {"R-12": "SATISFIED", "R-01": "SATISFIED", "R-02": "SATISFIED"}
+  },
+  "ZI_DASH_COMMENTS": {
+    "verdict": "PASS",
+    "expect": {"R-03": "SATISFIED", "R-04": "SATISFIED", "R-06": "SATISFIED",
+               "R-07": "SATISFIED"}
+  },
+
+  "ZI_NO_EXTRACTION":      {"verdict": "FAIL_FIXABLE",  "expect": {"R-01": "VIOLATED"}},
+  "ZI_NO_CDC":             {"verdict": "FAIL_FIXABLE",  "expect": {"R-02": "VIOLATED"}},
+  "ZI_AGGREGATE":          {"verdict": "FAIL_HARD",     "expect": {"R-03": "VIOLATED", "R-04": "VIOLATED"}},
+  "ZI_HAVING":             {"verdict": "FAIL_HARD",     "expect": {"R-05": "VIOLATED"}},
+  "ZI_UNION":              {"verdict": "FAIL_HARD",     "expect": {"R-06": "VIOLATED"}},
+  "ZI_DISTINCT":           {"verdict": "FAIL_HARD",     "expect": {"R-07": "VIOLATED"}},
+  "ZI_DISTINCT_SAFE":      {"verdict": "PASS",          "expect": {"R-07": "SATISFIED"}},
+  "ZI_PARAMETERS":         {"verdict": "FAIL_HARD",     "expect": {"R-08": "VIOLATED"}},
+  "ZI_TABLE_FUNC":         {"verdict": "FAIL_HARD",     "expect": {"R-09": "VIOLATED"}},
+  "ZI_USES_TABLE_FUNC":    {"verdict": "FAIL_HARD",     "expect": {"R-09": "VIOLATED", "R-27": "INCONCLUSIVE"}},
+  "ZI_TOMANY_JOIN":        {"verdict": "FAIL_HARD",     "expect": {"R-10": "VIOLATED"}},
+  "ZI_UNSPECIFIED_JOIN":   {"verdict": "MANUAL_REVIEW", "expect": {"R-10": "INCONCLUSIVE"}},
+  "ZI_INNER_JOIN":         {"verdict": "PASS",          "expect": {"R-11": "SATISFIED", "R-15": "SATISFIED"}},
+  "ZI_INNER_JOIN_UNMAPPED":{"verdict": "MANUAL_REVIEW", "expect": {"R-11": "INCONCLUSIVE"}},
+  "ZI_RIGHT_OUTER_JOIN":   {"verdict": "FAIL_HARD",     "expect": {"R-11": "VIOLATED"}},
+  "ZI_TOMANY_ASSOC":       {"verdict": "FAIL_HARD",     "expect": {"R-12": "VIOLATED"}},
+  "ZI_MISSING_MAIN_KEY":   {"verdict": "FAIL_FIXABLE",  "expect": {"R-13": "VIOLATED"}},
+  "ZI_MISSING_MAPPED_KEY": {"verdict": "MANUAL_REVIEW", "expect": {"R-14": "VIOLATED"}},
+  "ZI_MISSING_FK":         {"verdict": "MANUAL_REVIEW", "expect": {"R-15": "SATISFIED", "R-26": "INCONCLUSIVE"}},
+  "ZI_NO_JOIN_KEY":        {"verdict": "MANUAL_REVIEW", "expect": {"R-15": "VIOLATED", "R-26": "INCONCLUSIVE"}},
+  "ZI_TWO_MAIN":           {"verdict": "MANUAL_REVIEW", "expect": {"R-16": "VIOLATED"}},
+  "ZI_KEY_MISMATCH":       {"verdict": "FAIL_FIXABLE",  "expect": {"R-17": "VIOLATED"}},
+  "ZI_BAD_TABLEELEMENT":   {"verdict": "FAIL_FIXABLE",  "expect": {"R-18": "VIOLATED"}},
+  "ZI_BAD_VIEWELEMENT":    {"verdict": "FAIL_FIXABLE",  "expect": {"R-19": "VIOLATED"}},
+  "ZI_MAPPED_VIEW":        {"verdict": "MANUAL_REVIEW", "expect": {"R-20": "VIOLATED"}},
+  "ZI_CLUSTER_TABLE":      {"verdict": "FAIL_HARD",     "expect": {"R-21": "VIOLATED"}},
+  "ZI_NO_PRIMARY_KEY":     {"verdict": "FAIL_HARD",     "expect": {"R-22": "VIOLATED"}},
+  "ZI_CLIENT_KEY":         {"verdict": "FAIL_FIXABLE",  "expect": {"R-23": "VIOLATED"}},
+  "ZI_BYELEMENT_DELTA":    {"verdict": "FAIL_FIXABLE",  "expect": {"R-24": "VIOLATED"}},
+  "I_VENDOR_RELEASED":     {"verdict": "FAIL_FIXABLE",  "expect": {"R-25": "VIOLATED"}},
+  "ZI_DEEP_L1":            {"verdict": "MANUAL_REVIEW", "expect": {"R-29": "VIOLATED"}},
+  "ZI_BIG_TABLE":          {"verdict": "PASS",          "expect": {"R-30": "VIOLATED"}},
+  "ZI_UNPARSEABLE":        {"verdict": "UNPARSEABLE",   "expect": {}}
+}

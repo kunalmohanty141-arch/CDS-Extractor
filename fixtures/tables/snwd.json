@@ -1,0 +1,64 @@
+[
+  {
+    "name": "SNWD_SO",
+    "description": "EPM: Sales Order Header",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "package": "SEPM_DATA_MODEL",
+    "estimated_rows": 250000,
+    "fields": [
+      {"name": "MANDT", "key": true, "data_element": "MANDT", "type": "CLNT", "length": 3},
+      {"name": "NODE_KEY", "key": true, "data_element": "SYSUUID_X16", "type": "RAW", "length": 16},
+      {"name": "SO_ID", "data_element": "SNWD_SO_ID", "type": "CHAR", "length": 10},
+      {"name": "BUYER_GUID", "data_element": "SYSUUID_X16", "type": "RAW", "length": 16},
+      {"name": "CURRENCY_CODE", "data_element": "SNWD_CURRENCY_CODE", "type": "CUKY", "length": 5},
+      {"name": "GROSS_AMOUNT", "data_element": "SNWD_TA_GROSS_AMOUNT", "type": "CURR", "length": 15, "decimals": 2}
+    ]
+  },
+  {
+    "name": "SNWD_SO_I",
+    "description": "EPM: Sales Order Item",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "package": "SEPM_DATA_MODEL",
+    "estimated_rows": 1200000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "NODE_KEY", "key": true, "type": "RAW", "length": 16},
+      {"name": "PARENT_KEY", "type": "RAW", "length": 16},
+      {"name": "SO_ITEM_POS", "type": "NUMC", "length": 10},
+      {"name": "PRODUCT_GUID", "type": "RAW", "length": 16},
+      {"name": "GROSS_AMOUNT", "type": "CURR", "length": 15, "decimals": 2}
+    ]
+  },
+  {
+    "name": "SNWD_PD",
+    "description": "EPM: Product",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "estimated_rows": 5000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "NODE_KEY", "key": true, "type": "RAW", "length": 16},
+      {"name": "PRODUCT_ID", "type": "CHAR", "length": 10},
+      {"name": "DESC_GUID", "type": "RAW", "length": 16},
+      {"name": "PRICE", "type": "CURR", "length": 15, "decimals": 2}
+    ]
+  },
+  {
+    "name": "SNWD_TEXTS",
+    "description": "EPM: Texts",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "estimated_rows": 40000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "NODE_KEY", "key": true, "type": "RAW", "length": 16},
+      {"name": "TEXT", "type": "STRING"}
+    ]
+  }
+]

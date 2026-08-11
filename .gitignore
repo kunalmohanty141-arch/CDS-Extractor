@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+*.sqlite
+*.db
+.idea/
+.vscode/
+
+# Generated work products. These carry a customer's table and view names, and
+# a decision sheet is a record of what somebody decided about their system —
+# neither belongs in the tool's own history.
+*.xlsx
+ddl/
+out/
+reports/
+

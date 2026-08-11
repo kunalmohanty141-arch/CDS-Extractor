@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cdc-forge"
+version = "0.1.0"
+description = "Assess, validate and generate ABAP CDS views that are correctly enabled for Data Extraction and Change Data Capture."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Kunal Mohanty" }]
+keywords = ["sap", "abap", "cds", "datasphere", "cdc", "replication"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Database",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# The offline core deliberately has ZERO runtime dependencies: parsing, the
+# thirty rules and the generators all run on the standard library alone.
+#
+# Every package below is one somebody has to trust, install into a corporate
+# environment, and patch when it has a CVE. lxml and pydantic were listed here
+# for a long time and imported nowhere — dropped, because a dependency that
+# does nothing still has to be trusted.
+sap = ["requests>=2.31", "keyring>=25.0", "PyYAML>=6.0"]
+ui = ["streamlit>=1.33"]
+report = ["openpyxl>=3.1"]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+all = [
+    "requests>=2.31", "keyring>=25.0", "PyYAML>=6.0",
+    "streamlit>=1.33", "openpyxl>=3.1",
+]
+
+[project.scripts]
+cdc-forge = "cdcforge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# Correctness first. Style rules that would rewrite working, deliberate code
+# (str-Enum bases, quoted annotations) are deliberately not enabled — churn in
+# the verdict model is not worth a lint score.
+select = [
+    "F",      # pyflakes: undefined names, unused imports, shadowing
+    "E9",     # syntax errors
+    "B",      # bugbear: real bug patterns
+    "C4",     # comprehension misuse
+    "RET",    # return-path mistakes
+    "SIM",    # simplifications that remove branches
+    "PIE",
+    "RUF",
+]
+ignore = [
+    "UP042",  # str-Enum base is intentional; it keeps values JSON-serialisable
+    "UP037",  # quoted annotations are needed for the TYPE_CHECKING imports
+    "RET504", # a named result before returning is often the clearer read
+    "SIM108", # ternaries are not always clearer than if/else
+    "B008",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "I_VENDOR_RELEASED",
+    "kind": "DDLS",
+    "package": "SAPLFA",
+    "software_component": "S4CORE",
+    "owner": "SAP",
+    "api_state": "C1",
+    "description": "SAP standard view, released C1 — must not be modified"
+  },
+  {
+    "name": "ZI_CUSTORDER",
+    "kind": "DDLS",
+    "package": "ZSALES",
+    "owner": "CUSTOMER",
+    "api_state": "NOT_RELEASED"
+  },
+  {
+    "name": "ZI_SALESORDER_CDC",
+    "kind": "DDLS",
+    "package": "ZSALES",
+    "owner": "CUSTOMER",
+    "api_state": "NOT_RELEASED"
+  },
+  {
+    "name": "ZI_BUSINESSAREA",
+    "kind": "DDLS",
+    "package": "ZMASTERDATA",
+    "owner": "CUSTOMER",
+    "api_state": "NOT_RELEASED"
+  }
+]

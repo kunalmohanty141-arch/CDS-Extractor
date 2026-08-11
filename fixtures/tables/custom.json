@@ -1,0 +1,73 @@
+[
+  {
+    "name": "ZCUSTORDER",
+    "description": "Custom order header",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "CUSTOMER",
+    "package": "ZSALES",
+    "estimated_rows": 1800000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "ORDERID", "key": true, "data_element": "ZE_ORDERID", "type": "CHAR", "length": 12},
+      {"name": "CUSTOMER", "data_element": "KUNNR", "type": "CHAR", "length": 10},
+      {"name": "ORDERDATE", "type": "DATS", "length": 8},
+      {"name": "AMOUNT", "type": "CURR", "length": 15, "decimals": 2},
+      {"name": "CURRENCY", "type": "CUKY", "length": 5}
+    ]
+  },
+  {
+    "name": "ZORDERITEM",
+    "description": "Custom order item",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "CUSTOMER",
+    "package": "ZSALES",
+    "estimated_rows": 9500000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "ORDERID", "key": true, "type": "CHAR", "length": 12},
+      {"name": "ITEMNO", "key": true, "type": "NUMC", "length": 6},
+      {"name": "MATERIAL", "type": "CHAR", "length": 40},
+      {"name": "QUANTITY", "type": "QUAN", "length": 13, "decimals": 3}
+    ]
+  },
+  {
+    "name": "ZNOKEY",
+    "description": "Custom table with no key beyond the client",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "CUSTOMER",
+    "estimated_rows": 40000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "PAYLOAD", "type": "STRING"},
+      {"name": "CREATED_AT", "type": "DEC", "length": 15}
+    ]
+  },
+  {
+    "name": "ZBIGTABLE",
+    "description": "Custom table above the practical row ceiling",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "CUSTOMER",
+    "estimated_rows": 2500000000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "RECORD_ID", "key": true, "type": "CHAR", "length": 32},
+      {"name": "PAYLOAD", "type": "STRING"}
+    ]
+  },
+  {
+    "name": "ZLEGACY_POOL",
+    "description": "Legacy pooled table",
+    "table_class": "POOL",
+    "delivery_class": "A",
+    "owner": "CUSTOMER",
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "LEGACY_ID", "key": true, "type": "CHAR", "length": 8},
+      {"name": "VALUE", "type": "CHAR", "length": 40}
+    ]
+  }
+]

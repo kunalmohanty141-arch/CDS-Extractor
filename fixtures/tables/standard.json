@@ -1,0 +1,102 @@
+[
+  {
+    "name": "TGSB",
+    "description": "Business Areas",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "estimated_rows": 120,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "GSBER", "key": true, "data_element": "GSBER", "type": "CHAR", "length": 4},
+      {"name": "GTEXT", "type": "CHAR", "length": 30}
+    ]
+  },
+  {
+    "name": "T001",
+    "description": "Company Codes",
+    "table_class": "TRANSP",
+    "delivery_class": "C",
+    "owner": "SAP",
+    "estimated_rows": 300,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "BUKRS", "key": true, "data_element": "BUKRS", "type": "CHAR", "length": 4},
+      {"name": "BUTXT", "type": "CHAR", "length": 25},
+      {"name": "WAERS", "type": "CUKY", "length": 5}
+    ]
+  },
+  {
+    "name": "VBAK",
+    "description": "Sales Document: Header Data",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "estimated_rows": 45000000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "VBELN", "key": true, "data_element": "VBELN_VA", "type": "CHAR", "length": 10},
+      {"name": "ERDAT", "type": "DATS", "length": 8},
+      {"name": "BUKRS_VF", "type": "CHAR", "length": 4},
+      {"name": "NETWR", "type": "CURR", "length": 15, "decimals": 2},
+      {"name": "WAERK", "type": "CUKY", "length": 5}
+    ]
+  },
+  {
+    "name": "VBAP",
+    "description": "Sales Document: Item Data",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "estimated_rows": 780000000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "VBELN", "key": true, "data_element": "VBELN_VA", "type": "CHAR", "length": 10},
+      {"name": "POSNR", "key": true, "data_element": "POSNR_VA", "type": "NUMC", "length": 6},
+      {"name": "MATNR", "type": "CHAR", "length": 40},
+      {"name": "NETWR", "type": "CURR", "length": 15, "decimals": 2}
+    ]
+  },
+  {
+    "name": "MARA",
+    "description": "General Material Data",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "estimated_rows": 3000000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "MATNR", "key": true, "data_element": "MATNR", "type": "CHAR", "length": 40},
+      {"name": "MTART", "type": "CHAR", "length": 4},
+      {"name": "MEINS", "type": "UNIT", "length": 3}
+    ]
+  },
+  {
+    "name": "LFA1",
+    "description": "Vendor Master (General Section)",
+    "table_class": "TRANSP",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "estimated_rows": 90000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "LIFNR", "key": true, "data_element": "LIFNR", "type": "CHAR", "length": 10},
+      {"name": "NAME1", "type": "CHAR", "length": 35},
+      {"name": "LAND1", "type": "CHAR", "length": 3}
+    ]
+  },
+  {
+    "name": "RFBLG",
+    "description": "Cluster for accounting document segments",
+    "table_class": "CLUSTER",
+    "delivery_class": "A",
+    "owner": "SAP",
+    "estimated_rows": 4000000,
+    "fields": [
+      {"name": "MANDT", "key": true, "type": "CLNT", "length": 3},
+      {"name": "BUKRS", "key": true, "type": "CHAR", "length": 4},
+      {"name": "BELNR", "key": true, "type": "CHAR", "length": 10},
+      {"name": "GJAHR", "key": true, "type": "NUMC", "length": 4}
+    ]
+  }
+]
