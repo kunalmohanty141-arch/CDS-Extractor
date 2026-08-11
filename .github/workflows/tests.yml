@@ -1,0 +1,60 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.11 is the floor the package declares; 3.12 is what it is developed
+        # on. Running both is what stops the floor quietly rotting.
+        python: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Install
+        run: python -m pip install -e ".[all,dev]"
+
+      - name: Lint
+        run: ruff check src tests
+
+      - name: Test
+        run: python -m pytest -q
+
+  # The offline core claims zero runtime dependencies. That claim is worth
+  # nothing unless something checks it: an accidental `import requests` in the
+  # parser or the rule engine would pass every other job here, because every
+  # other job installs requests.
+  offline-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install nothing but the package itself
+        run: python -m pip install -e .
+
+      # No `validate ZI_MISSING_MAPPED_KEY` here: that fixture is built to fail,
+      # so its non-zero exit is a *verdict* rather than an error, and CI cannot
+      # tell the two apart from an exit code. `scan` validates every view in the
+      # corpus and exits 0, which is the stronger check anyway.
+      - name: Parse, validate and generate with no dependencies installed
+        run: |
+          python -m cdcforge.cli rules
+          python -m cdcforge.cli scan --fixtures fixtures
+          python -m cdcforge.cli generate table ZORDERITEM --fixtures fixtures
+          python -m cdcforge.cli generate wrapper I_VENDOR_RELEASED --fixtures fixtures

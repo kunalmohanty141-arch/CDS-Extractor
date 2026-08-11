@@ -6,9 +6,9 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/kunalmohanty141-arch/CDS-Extractor/actions/workflows/tests.yml"><img alt="tests" src="https://github.com/kunalmohanty141-arch/CDS-Extractor/actions/workflows/tests.yml/badge.svg"></a>
   <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white">
   <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-1f5fa9">
-  <img alt="718 tests" src="https://img.shields.io/badge/tests-718-1a7f4b">
   <img alt="Read-only by default" src="https://img.shields.io/badge/writes-off%20by%20default-6b46c1">
 </p>
 
